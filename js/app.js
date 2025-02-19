@@ -42,34 +42,39 @@ const flipBtnEl = document.getElementById('flip');
 let cardEls = document.querySelector('.card');
 const boardEl = document.querySelector('.board');
 
-const addCard = (txt, facedown) => {
-    const newCard = document.createElement('div'); // container
-    newCard.classList.add('card');
-    const newCardInner = document.createElement('div'); // inner, to position front and back
-    newCardInner.classList.add('card-inner');
-    const newCardFront = document.createElement('div');
-    newCardFront.classList.add('card-front');
-    newCardFront.innerText = txt;
-    const newCardBack = document.createElement('div');
-    newCardBack.classList.add('card-back');
-    if (facedown) {
-        newCardInner.classList.add('card-flipped');
-    };
-    newCardBack.style.backgroundColor = ageColors[age - 1];
-    newCardInner.appendChild(newCardFront);
-    newCardInner.appendChild(newCardBack);
-    newCard.appendChild(newCardInner);
-    return newCard;
-};
+// const addCard = (txt, facedown) => {
+//     const newCard = document.createElement('div'); // container
+//     newCard.classList.add('card');
+//     const newCardInner = document.createElement('div'); // inner, to position front and back
+//     newCardInner.classList.add('card-inner');
+//     const newCardFront = document.createElement('div');
+//     newCardFront.classList.add('card-front');
+//     newCardFront.innerText = txt;
+//     const newCardBack = document.createElement('div');
+//     newCardBack.classList.add('card-back');
+//     if (facedown) {
+//         newCardInner.classList.add('card-flipped');
+//     };
+//     newCardBack.style.backgroundColor = ageColors[age - 1];
+//     newCardInner.appendChild(newCardFront);
+//     newCardInner.appendChild(newCardBack);
+//     newCard.appendChild(newCardInner);
+//     return newCard;
+// };
 
 const dealCards = (age) => {
     let arr = positions[age];
     for (let r = 0; r < arr.length; r++) {
         for (let c = 0; c < arr[r].length; c++) {
-            let newCard = addCard('test', r % 2 !== 0);
+            // let newCard = addCard('test', r % 2 !== 0);
+            let newCard = document.createElement('div');
+            newCard.classList.add('card');
             newCard.id = `${age}-r-c`;
             newCard.style.gridColumn = `${arr[r][c]} / span 2`;
             newCard.style.gridRow = `${r + 2} / span 3`;
+            if (r % 2 !== 0) {
+                newCard.classList.add('card-flipped');
+            };
             boardEl.appendChild(newCard);
         };
     };
@@ -83,7 +88,7 @@ const dealCards = (age) => {
 dealCards(age);
 
 flipBtnEl.addEventListener('click', (e) => {
-    let temp = document.querySelectorAll('.card-inner');
+    let temp = document.querySelectorAll('.card');
     temp.forEach(c => c.classList.toggle('card-flipped'));
 });
 
