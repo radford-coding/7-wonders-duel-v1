@@ -75,7 +75,7 @@ const dealCards = (age) => {
     };
     cardEls = document.querySelectorAll('.card');
     cardEls.forEach(c => c.addEventListener('click', (e) => {
-        
+
         console.log(e.target.remove());
     }));
 };
@@ -87,3 +87,7 @@ flipBtnEl.addEventListener('click', (e) => {
     temp.forEach(c => c.classList.toggle('card-flipped'));
 });
 
+//TODO
+// change cards to just be 1 div per - currently 3 divs for lovely flips, but makes it hard. perhaps since flipping is unimportant, just have an initial state and initial background color/image, that changes instantly before the slower flip animation happens
+// clicking on a card chooses it
+// can't choose cards with other cards atop them
