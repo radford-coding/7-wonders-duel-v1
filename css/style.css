@@ -32,7 +32,7 @@ header {
 
 .board {
     display: grid;
-    grid-template-columns: repeat(13, 1fr);
+    grid-template-columns: repeat(13, 4vmin) 1fr;
     grid-template-rows: repeat(9, 1fr);
     max-width: 800px;
 }
@@ -52,9 +52,14 @@ header {
 }
 
 .card-flipped {
-    background-color: black;
+    background-color: var(--ageColor);
     color: black;
     transform: rotateY(180deg);
+}
+
+.card:not(.card-flipped):hover {
+    z-index: 3;
+    border: 3px solid black;
 }
 
 /* .card {

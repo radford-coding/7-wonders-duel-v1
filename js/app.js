@@ -36,7 +36,13 @@ const ageColors = [
     'purple'
 ];
 
-let age = 1;
+const game = {
+    age1cards: age1Positions,
+    age2Cards: age2Positions,
+    age3Cards: age2Positions,
+};
+
+let age = 2;
 
 const flipBtnEl = document.getElementById('flip');
 let cardEls = document.querySelector('.card');
@@ -63,13 +69,14 @@ const boardEl = document.querySelector('.board');
 // };
 
 const dealCards = (age) => {
-    let arr = positions[age];
+    document.querySelector('body').style.setProperty('--ageColor', ageColors[age - 1]);
+    let arr = positions[age]; // card positions for the current age
     for (let r = 0; r < arr.length; r++) {
         for (let c = 0; c < arr[r].length; c++) {
             // let newCard = addCard('test', r % 2 !== 0);
             let newCard = document.createElement('div');
             newCard.classList.add('card');
-            newCard.id = `${age}-r-c`;
+            newCard.id = `${age}-${r+2}-${arr[r][c]}`; //! age 1-3, row 0-6, col 2-12
             newCard.style.gridColumn = `${arr[r][c]} / span 2`;
             newCard.style.gridRow = `${r + 2} / span 3`;
             if (r % 2 !== 0) {
@@ -80,8 +87,8 @@ const dealCards = (age) => {
     };
     cardEls = document.querySelectorAll('.card');
     cardEls.forEach(c => c.addEventListener('click', (e) => {
+        console.log(e.target.id);
 
-        console.log(e.target.remove());
     }));
 };
 
